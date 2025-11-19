@@ -1,0 +1,5 @@
+html,
+body {
+	color: var(--md-on-surface, #eee);
+	background-color: var(--md-surface, #000);
+}
