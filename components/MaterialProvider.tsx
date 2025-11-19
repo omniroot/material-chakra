@@ -10,10 +10,7 @@ import {
 } from "react";
 import { materialChakraTheme } from "@/theme/index.ts";
 import "./MaterialStyles.css";
-import {
-	applyMaterialTheme,
-	MD_STORAGE_KEY,
-} from "@/theme/components/MaterialUtils.tsx";
+import { applyMaterialTheme, MD_STORAGE_KEY } from "@/theme/components/MaterialUtils.tsx";
 
 interface MaterialProvider {
 	children?: ReactNode;
@@ -26,9 +23,7 @@ interface MaterialContext {
 	setMode: (newMode: MaterialContext["mode"]) => void;
 }
 
-export const MaterialContext = createContext<MaterialContext | undefined>(
-	undefined,
-);
+export const MaterialContext = createContext<MaterialContext | undefined>(undefined);
 
 export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 	const getCached = useCallback((): {
@@ -39,10 +34,7 @@ export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 			const raw = localStorage.getItem(MD_STORAGE_KEY);
 			if (raw) {
 				const parsed = JSON.parse(raw);
-				if (
-					parsed.sourceHex &&
-					(parsed.mode === "light" || parsed.mode === "dark")
-				) {
+				if (parsed.sourceHex && (parsed.mode === "light" || parsed.mode === "dark")) {
 					return { color: parsed.sourceHex, mode: parsed.mode };
 				}
 			}
@@ -62,10 +54,7 @@ export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 
 	const setColor = (newColor: string) => {
 		const normalized = newColor.trim().toLowerCase();
-		if (
-			/^#[\da-f]{3,6}$/.test(normalized) ||
-			/^#[\da-f]{8}$/.test(normalized)
-		) {
+		if (/^#[\da-f]{3,6}$/.test(normalized) || /^#[\da-f]{8}$/.test(normalized)) {
 			setColorState(normalized);
 		}
 	};

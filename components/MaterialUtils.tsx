@@ -8,7 +8,7 @@ import {
 export const MD_STORAGE_KEY = "md-theme-cache";
 type ThemeMode = "light" | "dark";
 
-interface CachedTheme {
+export interface MaterialCache {
 	sourceHex: string;
 	mode: ThemeMode;
 	cssVars: Record<string, string>;
@@ -156,19 +156,11 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 		// Primary
 		"--md-primary": hexFromArgb(palettes.primary.tone(t.primary)),
 		"--md-on-primary": hexFromArgb(palettes.primary.tone(t.onPrimary)),
-		"--md-primary-container": hexFromArgb(
-			palettes.primary.tone(t.primaryContainer),
-		),
-		"--md-on-primary-container": hexFromArgb(
-			palettes.primary.tone(t.onPrimaryContainer),
-		),
+		"--md-primary-container": hexFromArgb(palettes.primary.tone(t.primaryContainer)),
+		"--md-on-primary-container": hexFromArgb(palettes.primary.tone(t.onPrimaryContainer)),
 		"--md-primary-fixed": hexFromArgb(palettes.primary.tone(t.primaryFixed)),
-		"--md-primary-fixed-dim": hexFromArgb(
-			palettes.primary.tone(t.primaryFixedDim),
-		),
-		"--md-on-primary-fixed": hexFromArgb(
-			palettes.primary.tone(t.onPrimaryFixed),
-		),
+		"--md-primary-fixed-dim": hexFromArgb(palettes.primary.tone(t.primaryFixedDim)),
+		"--md-on-primary-fixed": hexFromArgb(palettes.primary.tone(t.onPrimaryFixed)),
 		"--md-on-primary-fixed-variant": hexFromArgb(
 			palettes.primary.tone(t.onPrimaryFixedVariant),
 		),
@@ -182,15 +174,9 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 		"--md-on-secondary-container": hexFromArgb(
 			palettes.secondary.tone(t.onSecondaryContainer),
 		),
-		"--md-secondary-fixed": hexFromArgb(
-			palettes.secondary.tone(t.secondaryFixed),
-		),
-		"--md-secondary-fixed-dim": hexFromArgb(
-			palettes.secondary.tone(t.secondaryFixedDim),
-		),
-		"--md-on-secondary-fixed": hexFromArgb(
-			palettes.secondary.tone(t.onSecondaryFixed),
-		),
+		"--md-secondary-fixed": hexFromArgb(palettes.secondary.tone(t.secondaryFixed)),
+		"--md-secondary-fixed-dim": hexFromArgb(palettes.secondary.tone(t.secondaryFixedDim)),
+		"--md-on-secondary-fixed": hexFromArgb(palettes.secondary.tone(t.onSecondaryFixed)),
 		"--md-on-secondary-fixed-variant": hexFromArgb(
 			palettes.secondary.tone(t.onSecondaryFixedVariant),
 		),
@@ -198,19 +184,13 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 		// Tertiary
 		"--md-tertiary": hexFromArgb(palettes.tertiary.tone(t.tertiary)),
 		"--md-on-tertiary": hexFromArgb(palettes.tertiary.tone(t.onTertiary)),
-		"--md-tertiary-container": hexFromArgb(
-			palettes.tertiary.tone(t.tertiaryContainer),
-		),
+		"--md-tertiary-container": hexFromArgb(palettes.tertiary.tone(t.tertiaryContainer)),
 		"--md-on-tertiary-container": hexFromArgb(
 			palettes.tertiary.tone(t.onTertiaryContainer),
 		),
 		"--md-tertiary-fixed": hexFromArgb(palettes.tertiary.tone(t.tertiaryFixed)),
-		"--md-tertiary-fixed-dim": hexFromArgb(
-			palettes.tertiary.tone(t.tertiaryFixedDim),
-		),
-		"--md-on-tertiary-fixed": hexFromArgb(
-			palettes.tertiary.tone(t.onTertiaryFixed),
-		),
+		"--md-tertiary-fixed-dim": hexFromArgb(palettes.tertiary.tone(t.tertiaryFixedDim)),
+		"--md-on-tertiary-fixed": hexFromArgb(palettes.tertiary.tone(t.onTertiaryFixed)),
 		"--md-on-tertiary-fixed-variant": hexFromArgb(
 			palettes.tertiary.tone(t.onTertiaryFixedVariant),
 		),
@@ -219,18 +199,14 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 		"--md-error": hexFromArgb(palettes.error.tone(t.error)),
 		"--md-on-error": hexFromArgb(palettes.error.tone(t.onError)),
 		"--md-error-container": hexFromArgb(palettes.error.tone(t.errorContainer)),
-		"--md-on-error-container": hexFromArgb(
-			palettes.error.tone(t.onErrorContainer),
-		),
+		"--md-on-error-container": hexFromArgb(palettes.error.tone(t.onErrorContainer)),
 
 		// Surfaces
 		"--md-background": hexFromArgb(palettes.neutral.tone(t.background)),
 		"--md-on-background": hexFromArgb(palettes.neutral.tone(t.onBackground)),
 		"--md-surface": hexFromArgb(palettes.neutral.tone(t.surface)),
 		"--md-on-surface": hexFromArgb(palettes.neutral.tone(t.onSurface)),
-		"--md-surface-variant": hexFromArgb(
-			palettes.neutralVariant.tone(t.surfaceVariant),
-		),
+		"--md-surface-variant": hexFromArgb(palettes.neutralVariant.tone(t.surfaceVariant)),
 		"--md-on-surface-variant": hexFromArgb(
 			palettes.neutralVariant.tone(t.onSurfaceVariant),
 		),
@@ -243,9 +219,7 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 		"--md-surface-container-low": hexFromArgb(
 			palettes.neutral.tone(t.surfaceContainerLow),
 		),
-		"--md-surface-container": hexFromArgb(
-			palettes.neutral.tone(t.surfaceContainer),
-		),
+		"--md-surface-container": hexFromArgb(palettes.neutral.tone(t.surfaceContainer)),
 		"--md-surface-container-high": hexFromArgb(
 			palettes.neutral.tone(t.surfaceContainerHigh),
 		),
@@ -254,18 +228,10 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 		),
 
 		"--md-outline": hexFromArgb(palettes.neutralVariant.tone(t.outline)),
-		"--md-outline-variant": hexFromArgb(
-			palettes.neutralVariant.tone(t.outlineVariant),
-		),
-		"--md-inverse-surface": hexFromArgb(
-			palettes.neutral.tone(t.inverseSurface),
-		),
-		"--md-inverse-on-surface": hexFromArgb(
-			palettes.neutral.tone(t.inverseOnSurface),
-		),
-		"--md-inverse-primary": hexFromArgb(
-			palettes.primary.tone(t.inversePrimary),
-		),
+		"--md-outline-variant": hexFromArgb(palettes.neutralVariant.tone(t.outlineVariant)),
+		"--md-inverse-surface": hexFromArgb(palettes.neutral.tone(t.inverseSurface)),
+		"--md-inverse-on-surface": hexFromArgb(palettes.neutral.tone(t.inverseOnSurface)),
+		"--md-inverse-primary": hexFromArgb(palettes.primary.tone(t.inversePrimary)),
 
 		"--md-surface-tint": hexFromArgb(palettes.primary.tone(80)),
 		"--md-shadow": "#000000",
@@ -275,10 +241,7 @@ function generateCssVars(sourceHex: string, mode: ThemeMode) {
 	return vars;
 }
 
-function applyVarsToElement(
-	vars: Record<string, string>,
-	element: HTMLElement,
-) {
+function applyVarsToElement(vars: Record<string, string>, element: HTMLElement) {
 	Object.entries(vars).forEach(([key, value]) => {
 		element.style.setProperty(key, value);
 	});
@@ -289,7 +252,7 @@ function saveToCache(
 	mode: ThemeMode,
 	cssVars: Record<string, string>,
 ) {
-	const cache: CachedTheme = {
+	const cache: MaterialCache = {
 		sourceHex,
 		mode,
 		cssVars,
@@ -302,15 +265,12 @@ function saveToCache(
 	}
 }
 
-function getFromCache(
-	sourceHex: string,
-	mode: ThemeMode,
-): Record<string, string> | null {
+function getFromCache(sourceHex: string, mode: ThemeMode): Record<string, string> | null {
 	try {
 		const raw = localStorage.getItem(MD_STORAGE_KEY);
 		if (!raw) return null;
 
-		const cached: CachedTheme = JSON.parse(raw);
+		const cached: MaterialCache = JSON.parse(raw);
 		if (cached.sourceHex === sourceHex && cached.mode === mode) {
 			return cached.cssVars;
 		}
@@ -326,11 +286,7 @@ export function clearMaterialThemeCache() {
 }
 
 export function applyMaterialTheme(
-	options: {
-		sourceColor?: string;
-		mode?: ThemeMode;
-		element?: HTMLElement;
-	} = {},
+	options: { sourceColor?: string; mode?: ThemeMode; element?: HTMLElement } = {},
 ) {
 	const {
 		sourceColor = "#ff0000",
