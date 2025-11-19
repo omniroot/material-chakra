@@ -8,9 +8,9 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import { MD_STORAGE_KEY } from "@/theme/components/MaterialUtils.tsx";
 import { materialChakraTheme } from "@/theme/index.ts";
 import "./MaterialStyles.css";
-import { applyMaterialTheme, MD_STORAGE_KEY } from "@/theme/components/MaterialUtils.tsx";
 
 interface MaterialProvider {
 	children?: ReactNode;
@@ -23,7 +23,9 @@ interface MaterialContext {
 	setMode: (newMode: MaterialContext["mode"]) => void;
 }
 
-export const MaterialContext = createContext<MaterialContext | undefined>(undefined);
+export const MaterialContext = createContext<MaterialContext | undefined>(
+	undefined,
+);
 
 export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 	const getCached = useCallback((): {
@@ -34,7 +36,10 @@ export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 			const raw = localStorage.getItem(MD_STORAGE_KEY);
 			if (raw) {
 				const parsed = JSON.parse(raw);
-				if (parsed.sourceHex && (parsed.mode === "light" || parsed.mode === "dark")) {
+				if (
+					parsed.sourceHex &&
+					(parsed.mode === "light" || parsed.mode === "dark")
+				) {
 					return { color: parsed.sourceHex, mode: parsed.mode };
 				}
 			}
@@ -48,24 +53,27 @@ export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 	// При любом изменении — просто вызываем applyMaterialTheme
 	// Он сам всё закеширует внутри себя
 	useEffect(() => {
-		applyMaterialTheme({ sourceColor: color, mode });
+		// applyMaterialTheme({ sourceColor: color, mode });
 		document.documentElement.setAttribute("data-theme", mode);
 	}, [color, mode]);
 
 	const setColor = (newColor: string) => {
 		const normalized = newColor.trim().toLowerCase();
-		if (/^#[\da-f]{3,6}$/.test(normalized) || /^#[\da-f]{8}$/.test(normalized)) {
+		if (
+			/^#[\da-f]{3,6}$/.test(normalized) ||
+			/^#[\da-f]{8}$/.test(normalized)
+		) {
 			setColorState(normalized);
 		}
 	};
 
 	const setMode = (newMode: "light" | "dark") => setModeState(newMode);
 
-	const reset = () => {
-		localStorage.removeItem(MD_STORAGE_KEY);
-		setColorState("#ee715a");
-		setModeState("dark");
-	};
+	// const reset = () => {
+	// 	localStorage.removeItem(MD_STORAGE_KEY);
+	// 	setColorState("#ee715a");
+	// 	setModeState("dark");
+	// };
 
 	return (
 		<MaterialContext.Provider value={{ color, mode, setColor, setMode }}>
