@@ -8,7 +8,10 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import { MD_STORAGE_KEY } from "@/theme/components/MaterialUtils.tsx";
+import {
+	applyMaterialTheme,
+	MD_STORAGE_KEY,
+} from "@/theme/components/MaterialUtils.tsx";
 import { materialChakraTheme } from "@/theme/index.ts";
 import "./MaterialStyles.css";
 
@@ -53,7 +56,7 @@ export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 	// При любом изменении — просто вызываем applyMaterialTheme
 	// Он сам всё закеширует внутри себя
 	useEffect(() => {
-		// applyMaterialTheme({ sourceColor: color, mode });
+		applyMaterialTheme({ sourceColor: color, mode });
 		document.documentElement.setAttribute("data-theme", mode);
 	}, [color, mode]);
 
