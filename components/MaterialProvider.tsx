@@ -23,7 +23,7 @@ interface MaterialContext {
 	setMode: (newMode: MaterialContext["mode"]) => void;
 }
 
-export const MaterialContext = createContext<MaterialContext | undefined>(undefined);
+const MaterialContext = createContext<MaterialContext | undefined>(undefined);
 
 export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 	const getCached = useCallback((): {

@@ -29,3 +29,4 @@ const themeConfig = defineConfig({
 });
 
 export const materialChakraTheme = createSystem(defaultBaseConfig, themeConfig);
+export default materialChakraTheme;
