@@ -8,9 +8,9 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import { applyMaterialTheme, MD_STORAGE_KEY } from "@/theme/components/MaterialUtils.tsx";
 import { materialChakraTheme } from "@/theme/index.ts";
 import "./MaterialStyles.css";
-import { applyMaterialTheme, MD_STORAGE_KEY } from "@/theme/components/MaterialUtils.tsx";
 
 interface MaterialProvider {
 	children?: ReactNode;
@@ -61,11 +61,11 @@ export const MaterialProvider: FC<MaterialProvider> = ({ children }) => {
 
 	const setMode = (newMode: "light" | "dark") => setModeState(newMode);
 
-	const reset = () => {
-		localStorage.removeItem(MD_STORAGE_KEY);
-		setColorState("#ee715a");
-		setModeState("dark");
-	};
+	// const reset = () => {
+	// 	localStorage.removeItem(MD_STORAGE_KEY);
+	// 	setColorState("#ee715a");
+	// 	setModeState("dark");
+	// };
 
 	return (
 		<MaterialContext.Provider value={{ color, mode, setColor, setMode }}>
